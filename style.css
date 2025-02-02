@@ -12,7 +12,7 @@
 body {
     width: 100%;
     height: auto;
-    background-color: white;
+    background-color: rgb(174, 174, 179);
     overflow-x: hidden;
 }
 
@@ -136,8 +136,78 @@ section {
 }
 
 .content {
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text inside */
+    width: 100%;
 }
+.left-text {
+    display: inline-block;
+    margin-right: 280px; /* Space between "I'm" and changing text */
+    font-weight: bold;
+}
+
+.content.another-class {
+    display: flex;
+    justify-content: flex-start; /* Move text to the left */
+    align-items: center;
+    width: 100%;
+    text-align: left; /* Align text to left */
+}
+
+h2 {
+    text-align: center; /* Ensure heading is centered */
+    margin-bottom: 10px; /* Add spacing before paragraph */
+}
+
+p {
+    max-width: 600px; /* Optional: Limit width for better readability */
+    line-height: 1.6;
+}   
+
+.changing-text {
+    color: transparent;
+    display: inline-block;
+    -webkit-text-stroke: 0.7px rgb(12, 4, 122); /* Outline effect */
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    opacity: 0; /* Initially hidden */
+    animation: display-text 12s linear infinite; 
+    margin-left: 10px;
+    
+}
+
+.changing-text:nth-child(1) { animation-delay: 0s; }
+.changing-text:nth-child(2) { animation-delay: 4s; }
+.changing-text:nth-child(3) { animation-delay: 8s; }
+
+@keyframes display-text {
+    0% { opacity: 0; } 
+    10% { opacity: 1; } /* Text appears */
+    30% { opacity: 1; } /* Stay visible */
+    40% { opacity: 0; } /* Fade out */
+    100% { opacity: 0; } /* Hide */
+}
+
+.changing-text::before {
+    content: attr(data-text);
+    position: absolute;
+    width: 0%;
+    border-right: 2px solid blue; /* Cursor effect */
+    color: rgb(183, 75, 75);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(12) infinite;
+}
+
+@keyframes typing {
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 100%; }
+}
+
 
 .content h1 {
     font-size: 2.5rem;
